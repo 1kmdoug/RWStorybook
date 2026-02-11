@@ -14,7 +14,6 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['../src/assets'],
   viteFinal: async (config) => {
     config.base = '/RWStorybook/';
     return config;
