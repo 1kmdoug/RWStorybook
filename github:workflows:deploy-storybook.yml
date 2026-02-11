@@ -1,0 +1,60 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build Storybook
+        run: npm run build-storybook
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./storybook-static
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+4. Click **Commit changes**
+
+### 2. Enable GitHub Pages:
+
+1. Go to your repo **Settings**
+2. Click **Pages** (left sidebar)
+3. Under "Source", select **GitHub Actions**
+4. Save
+
+### 3. Trigger the first deployment:
+
+Go to the **Actions** tab in your repo and click "Run workflow" (or just push any change to trigger it)
+
+---
+
+**That's it!** Now every time you push to GitHub, it auto-builds and deploys. Your Storybook will be live at:
+```
+https://YOUR_USERNAME.github.io/reportall-component-library/
