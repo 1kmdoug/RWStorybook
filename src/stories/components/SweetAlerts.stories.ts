@@ -1,89 +1,66 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-sweet-alerts-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Sweet Alerts</div>
+      <p style="color: var(--danger); font-size: 0.8125rem; font-weight: 600; margin-bottom: 1rem;">
+        ⚠️ Guidance needed: When to use Basic vs. Title-with-Text. See @Doug McLaughlin.
+      </p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+        <button class="btn btn-primary" (click)="activeAlert = 'basic'">Basic Alert</button>
+        <button class="btn btn-outline-primary" (click)="activeAlert = 'title'">Title + Text Alert</button>
+      </div>
+
+      <!-- Basic SweetAlert mockup -->
+      <div *ngIf="activeAlert" style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 2rem; max-width: 400px; text-align: center; margin: 0 auto;">
+        <div *ngIf="activeAlert === 'basic'">
+          <div style="width: 4rem; height: 4rem; border-radius: 50%; background: var(--ra-green-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; color: var(--primary);">✓</div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Good job!</h3>
+          <button class="btn btn-primary" style="margin-top: 1rem;" (click)="activeAlert = null">OK</button>
+        </div>
+        <div *ngIf="activeAlert === 'title'">
+          <div style="width: 4rem; height: 4rem; border-radius: 50%; background: #FFF8E1; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; color: var(--warning);">!</div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Are you sure?</h3>
+          <p style="color: var(--gray-500); font-size: 0.875rem; margin: 0 0 1.25rem;">You won't be able to revert this action.</p>
+          <div style="display: flex; gap: 0.5rem; justify-content: center;">
+            <button class="btn btn-outline-secondary" (click)="activeAlert = null">Cancel</button>
+            <button class="btn btn-warning" (click)="activeAlert = null">Yes, do it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+})
+class SweetAlertsDemoComponent {
+  activeAlert: string | null = null;
+}
+
+const meta: Meta<SweetAlertsDemoComponent> = {
   title: 'Components/Sweet Alerts',
-  tags: ['autodocs'],
+  component: SweetAlertsDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Sweet Alerts
+**Vristo Variant:** Basic; A title with a text under  
+**ReportAll Note:** Need guidance on when to use each variant  
+**Reference:** [Vristo Sweet Alerts](https://angular.vristo.sbthemes.com/component/sweetalert)
 
-Beautiful replacement for JavaScript's alert() popup.
-
-**Approved Variants:** 
-- Basic
-- A title with text under
-- Mixin
-
-**Reference:** [Vristo Sweet Alerts Documentation](https://angular.vristo.sbthemes.com/components/sweetalert)
+Two approved alert patterns — a simple confirmation (Basic) and a destructive-action
+confirmation with title and explanatory text. Usage guidelines TBD.
         `,
       },
     },
   },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
-export const Basic: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Show Alert</button>
-        <div class="mt-4 p-4" style="background: #f8f9fa; border-radius: 0.5rem;">
-          <div style="max-width: 400px; margin: 0 auto; background: white; padding: 2rem; border-radius: 0.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <div style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">✓</div>
-            <h3 style="margin-bottom: 0.5rem;">Success!</h3>
-            <p style="color: #6c757d;">Your operation completed successfully.</p>
-            <button class="btn btn-primary mt-3">OK</button>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-export const TitleWithText: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Show Alert with Title</button>
-        <div class="mt-4 p-4" style="background: #f8f9fa; border-radius: 0.5rem;">
-          <div style="max-width: 400px; margin: 0 auto; background: white; padding: 2rem; border-radius: 0.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <h2 style="color: var(--primary-color); margin-bottom: 1rem;">Are you sure?</h2>
-            <p style="color: #6c757d; margin-bottom: 2rem;">You won't be able to revert this action!</p>
-            <div style="display: flex; gap: 0.5rem; justify-content: center;">
-              <button class="btn" style="background-color: #6c757d; color: white;">Cancel</button>
-              <button class="btn btn-primary">Yes, delete it!</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-export const Mixin: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Show Mixin Alert</button>
-        <div class="mt-4 p-4" style="background: #f8f9fa; border-radius: 0.5rem;">
-          <div style="max-width: 400px; margin: 0 auto; background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <div style="display: flex; align-items: flex-start; gap: 1rem;">
-              <div style="font-size: 2rem; color: #ffc107;">⚠</div>
-              <div style="flex: 1;">
-                <h4 style="margin: 0 0 0.5rem 0;">Warning</h4>
-                <p style="color: #6c757d; margin: 0;">This action requires confirmation.</p>
-              </div>
-            </div>
-            <div style="margin-top: 1.5rem; text-align: right;">
-              <button class="btn btn-primary">Confirm</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
+type Story = StoryObj<SweetAlertsDemoComponent>;
+export const SweetAlerts: Story = {};

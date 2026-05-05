@@ -1,86 +1,55 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-checkbox-radio-demo',
+  standalone: true,
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Checkbox and Radio — Default</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 500px;">
+        <div>
+          <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">Checkboxes</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="c1" checked>
+            <label for="c1">Checked option</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="c2">
+            <label for="c2">Unchecked option</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="c3" disabled>
+            <label for="c3" style="opacity: 0.5;">Disabled</label>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">Radio Buttons</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio" id="r1" checked>
+            <label for="r1">Option A</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio" id="r2">
+            <label for="r2">Option B</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="radio" id="r3" disabled>
+            <label for="r3" style="opacity: 0.5;">Disabled</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+})
+class CheckboxRadioDemoComponent {}
+
+const meta: Meta<CheckboxRadioDemoComponent> = {
   title: 'Forms/Checkbox and Radio',
+  component: CheckboxRadioDemoComponent,
+  parameters: { docs: { description: { component: `**Vristo Variant:** Default\n**Reference:** [Vristo Checkbox and Radio](https://angular.vristo.sbthemes.com/forms/checkbox-radio)\n\nDefault browser checkboxes and radios, tinted with the primary accent color.` } } },
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## Checkbox and Radio
-
-Selection controls for forms.
-
-**Approved Variant:** Default
-
-**Reference:** [Vristo Checkbox and Radio Documentation](https://angular.vristo.sbthemes.com/forms/checkbox-radio)
-        `,
-      },
-    },
-  },
 };
-
 export default meta;
-type Story = StoryObj;
-
-export const Checkboxes: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <h5 class="mb-3">Checkboxes</h5>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="checkbox" checked style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option 1 - Selected</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="checkbox" style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option 2</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="checkbox" style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option 3</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: not-allowed; opacity: 0.5;">
-            <input type="checkbox" disabled style="margin-right: 0.75rem; width: 18px; height: 18px;">
-            <span>Option 4 - Disabled</span>
-          </label>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-export const RadioButtons: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <h5 class="mb-3">Radio Buttons</h5>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="radio" name="options" checked style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option A - Selected</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="radio" name="options" style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option B</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: pointer;">
-            <input type="radio" name="options" style="margin-right: 0.75rem; width: 18px; height: 18px; cursor: pointer;">
-            <span>Option C</span>
-          </label>
-          
-          <label style="display: flex; align-items: center; cursor: not-allowed; opacity: 0.5;">
-            <input type="radio" name="options" disabled style="margin-right: 0.75rem; width: 18px; height: 18px;">
-            <span>Option D - Disabled</span>
-          </label>
-        </div>
-      </div>
-    `,
-  }),
-};
+type Story = StoryObj<CheckboxRadioDemoComponent>;
+export const Default: Story = {};

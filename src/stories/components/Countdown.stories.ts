@@ -1,56 +1,53 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-countdown-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Simple Countdown</div>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; padding: 2rem 0;">
+        <div *ngFor="let unit of units" style="text-align: center;">
+          <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1rem 1.5rem; min-width: 80px;">
+            <span style="font-size: 2rem; font-weight: 700; color: var(--primary);">{{ unit.value }}</span>
+          </div>
+          <span style="display: block; margin-top: 0.5rem; font-size: 0.75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em;">
+            {{ unit.label }}
+          </span>
+        </div>
+      </div>
+    </div>
+  `,
+})
+class CountdownDemoComponent {
+  units = [
+    { label: 'Days', value: 12 },
+    { label: 'Hours', value: 8 },
+    { label: 'Minutes', value: 43 },
+    { label: 'Seconds', value: 27 },
+  ];
+}
+
+const meta: Meta<CountdownDemoComponent> = {
   title: 'Components/Countdown',
-  tags: ['autodocs'],
+  component: CountdownDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Simple Countdown
+**Vristo Variant:** Simple Countdown  
+**Reference:** [Vristo Countdown](https://angular.vristo.sbthemes.com/component/countdown)
 
-Timer countdown component for time-sensitive events.
-
-**Approved Variant:** Simple Countdown
-
-**Reference:** [Vristo Countdown Documentation](https://angular.vristo.sbthemes.com/components/countdown)
+Displays a countdown timer with days, hours, minutes, and seconds blocks.
         `,
       },
     },
   },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 0.5rem;">
-          <h3 class="mb-3">Event Starts In</h3>
-          <div style="display: flex; gap: 1rem; justify-content: center; font-size: 2rem; font-weight: bold; color: var(--primary-color);">
-            <div style="text-align: center;">
-              <div>05</div>
-              <div style="font-size: 0.875rem; font-weight: normal; color: #6c757d;">Days</div>
-            </div>
-            <div>:</div>
-            <div style="text-align: center;">
-              <div>12</div>
-              <div style="font-size: 0.875rem; font-weight: normal; color: #6c757d;">Hours</div>
-            </div>
-            <div>:</div>
-            <div style="text-align: center;">
-              <div>34</div>
-              <div style="font-size: 0.875rem; font-weight: normal; color: #6c757d;">Minutes</div>
-            </div>
-            <div>:</div>
-            <div style="text-align: center;">
-              <div>56</div>
-              <div style="font-size: 0.875rem; font-weight: normal; color: #6c757d;">Seconds</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<CountdownDemoComponent>;
 export const SimpleCountdown: Story = {};

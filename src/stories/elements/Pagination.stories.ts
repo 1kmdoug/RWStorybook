@@ -1,61 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-pagination-demo',
+  standalone: true,
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Default Pagination</div>
+      <ul class="pagination">
+        <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">‹</a></li>
+        <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">5</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0)">›</a></li>
+      </ul>
+    </div>
+  `,
+})
+class PaginationDemoComponent {}
+
+const meta: Meta<PaginationDemoComponent> = {
   title: 'Elements/Pagination',
+  component: PaginationDemoComponent,
+  parameters: { docs: { description: { component: `**Vristo Variant:** Default\n**Reference:** [Vristo Pagination](https://angular.vristo.sbthemes.com/element/pagination)` } } },
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## Default Pagination
-
-Navigate through pages of content.
-
-**Approved Variant:** Default
-
-**Reference:** [Vristo Pagination Documentation](https://angular.vristo.sbthemes.com/elements/pagination)
-        `,
-      },
-    },
-  },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <nav>
-          <ul style="display: flex; list-style: none; padding: 0; margin: 0; gap: 0.25rem;">
-            <li>
-              <a href="javascript:void(0)" style="display: block; padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; border-radius: 0.375rem; color: #6c757d; text-decoration: none;">
-                Previous
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" style="display: block; padding: 0.5rem 0.75rem; border: 1px solid var(--primary-color); background-color: var(--primary-color); border-radius: 0.375rem; color: white; text-decoration: none;">
-                1
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" style="display: block; padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; border-radius: 0.375rem; color: #6c757d; text-decoration: none; transition: all 0.2s;">
-                2
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" style="display: block; padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; border-radius: 0.375rem; color: #6c757d; text-decoration: none;">
-                3
-              </a>
-            </li>
-            <li>
-              <a href="javascript:void(0)" style="display: block; padding: 0.5rem 0.75rem; border: 1px solid #dee2e6; border-radius: 0.375rem; color: #6c757d; text-decoration: none;">
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    `,
-  }),
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<PaginationDemoComponent>;
 export const DefaultPagination: Story = {};

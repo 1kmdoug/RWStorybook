@@ -1,71 +1,42 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
-  title: 'Elements/Progress Bar',
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## Basic Progress Bar
-
-Visual indicator of process completion.
-
-**Approved Variant:** Basic Progress Bar
-
-**Reference:** [Vristo Progress Bar Documentation](https://angular.vristo.sbthemes.com/elements/progress-bar)
-        `,
-      },
-    },
-  },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <div class="mb-4">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span>Progress</span>
-            <span>25%</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" style="width: 25%;"></div>
-          </div>
+@Component({
+  selector: 'vristo-progress-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Basic Progress Bar</div>
+      <div *ngFor="let bar of bars" style="margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.375rem;">
+          <span style="font-size: 0.8125rem; font-weight: 600; color: var(--gray-700);">{{ bar.label }}</span>
+          <span style="font-size: 0.8125rem; color: var(--gray-500);">{{ bar.value }}%</span>
         </div>
-        
-        <div class="mb-4">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span>Progress</span>
-            <span>50%</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" style="width: 50%;"></div>
-          </div>
-        </div>
-        
-        <div class="mb-4">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span>Progress</span>
-            <span>75%</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" style="width: 75%;"></div>
-          </div>
-        </div>
-        
-        <div class="mb-4">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-            <span>Complete</span>
-            <span>100%</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" style="width: 100%; background-color: #28a745;"></div>
-          </div>
+        <div class="progress">
+          <div class="progress-bar" [style.width.%]="bar.value" [style.background]="bar.color"></div>
         </div>
       </div>
-    `,
-  }),
+    </div>
+  `,
+})
+class ProgressDemoComponent {
+  bars = [
+    { label: 'Primary', value: 65, color: 'var(--primary)' },
+    { label: 'Success', value: 85, color: 'var(--success)' },
+    { label: 'Info', value: 45, color: 'var(--info)' },
+    { label: 'Warning', value: 30, color: 'var(--warning)' },
+    { label: 'Danger', value: 15, color: 'var(--danger)' },
+  ];
+}
+
+const meta: Meta<ProgressDemoComponent> = {
+  title: 'Elements/Progress Bar',
+  component: ProgressDemoComponent,
+  parameters: { docs: { description: { component: `**Vristo Variant:** Basic\n**Reference:** [Vristo Progress Bar](https://angular.vristo.sbthemes.com/element/progress-bar)` } } },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<ProgressDemoComponent>;
 export const BasicProgressBar: Story = {};

@@ -1,48 +1,51 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-counter-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Simple Counter</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; padding: 1rem 0;">
+        <div *ngFor="let counter of counters" style="text-align: center; padding: 1.5rem; background: var(--gray-50); border-radius: var(--radius-lg);">
+          <div [style.color]="counter.color" style="font-size: 2.5rem; font-weight: 800; line-height: 1;">
+            {{ counter.value }}{{ counter.suffix }}
+          </div>
+          <p style="margin: 0.5rem 0 0; font-size: 0.8125rem; color: var(--gray-500); font-weight: 600;">{{ counter.label }}</p>
+        </div>
+      </div>
+    </div>
+  `,
+})
+class CounterDemoComponent {
+  counters = [
+    { value: 1420, suffix: '+', label: 'Active Users', color: 'var(--primary)' },
+    { value: 862, suffix: '', label: 'Reports Generated', color: 'var(--info)' },
+    { value: 98, suffix: '%', label: 'Uptime', color: 'var(--success)' },
+    { value: 24, suffix: '/7', label: 'Support', color: 'var(--warning)' },
+  ];
+}
+
+const meta: Meta<CounterDemoComponent> = {
   title: 'Components/Counter',
-  tags: ['autodocs'],
+  component: CounterDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Simple Counter
+**Vristo Variant:** Simple Counter  
+**Reference:** [Vristo Counter](https://angular.vristo.sbthemes.com/component/counter)
 
-Animated number counter for statistics and metrics display.
-
-**Approved Variant:** Simple Counter
-
-**Reference:** [Vristo Counter Documentation](https://angular.vristo.sbthemes.com/components/counter)
+Animated stat counters. In production, these animate on scroll into view.
         `,
       },
     },
   },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-          <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 0.5rem; min-width: 150px;">
-            <div style="font-size: 3rem; font-weight: bold; color: var(--primary-color);">2,547</div>
-            <div style="color: #6c757d; margin-top: 0.5rem;">Total Users</div>
-          </div>
-          
-          <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 0.5rem; min-width: 150px;">
-            <div style="font-size: 3rem; font-weight: bold; color: var(--primary-color);">18,249</div>
-            <div style="color: #6c757d; margin-top: 0.5rem;">Total Revenue</div>
-          </div>
-          
-          <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 0.5rem; min-width: 150px;">
-            <div style="font-size: 3rem; font-weight: bold; color: var(--primary-color);">98%</div>
-            <div style="color: #6c757d; margin-top: 0.5rem;">Satisfaction</div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<CounterDemoComponent>;
 export const SimpleCounter: Story = {};

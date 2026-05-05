@@ -1,87 +1,69 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-modal-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Vertically Centered Modal</div>
+      <button class="btn btn-primary" (click)="showModal = true">Open Modal</button>
+
+      <div class="modal-backdrop" *ngIf="showModal" (click)="showModal = false">
+        <div class="modal" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <h3>Modal Title</h3>
+            <button style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--gray-400);"
+                    (click)="showModal = false">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="color: var(--gray-600); font-size: 0.875rem; line-height: 1.6; margin: 0;">
+              This is a vertically-centered modal. It's the primary modal pattern for ReportAll — centered
+              both horizontally and vertically in the viewport.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" (click)="showModal = false">Cancel</button>
+            <button class="btn btn-primary" (click)="showModal = false">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 1.5rem;">
+      <div class="panel-heading">Custom Examples</div>
+      <p style="color: var(--gray-500); font-size: 0.875rem;">
+        Custom modal examples are also approved for use. These follow the same vertically-centered
+        positioning but may include specialized content layouts — forms, confirmation dialogs,
+        multi-step flows, etc.
+      </p>
+    </div>
+  `,
+})
+class ModalDemoComponent {
+  showModal = false;
+}
+
+const meta: Meta<ModalDemoComponent> = {
   title: 'Components/Modal',
-  tags: ['autodocs'],
+  component: ModalDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Modal
+**Vristo Variant:** Vertically Centered, Custom Examples  
+**Reference:** [Vristo Modal](https://angular.vristo.sbthemes.com/component/modal)
 
-Dialog boxes for user interaction and content display.
-
-**Use Cases:** 
-- Confirmations
-- Forms
-- Alerts
-- Detailed information display
-
-**Approved Variants:** 
-- Vertically Centered
-- Custom Examples
-
-**Reference:** [Vristo Modal Documentation](https://angular.vristo.sbthemes.com/components/modals)
+Modals should always be vertically centered. Custom examples (specialized content layouts)
+are also approved. Dismiss via backdrop click, X button, or Cancel action.
         `,
       },
     },
   },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
-export const VerticallyCentered: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Launch Modal</button>
-        
-        <div class="mt-4 p-4" style="background-color: #f8f9fa; border-radius: 0.5rem;">
-          <p><strong>Modal Preview:</strong></p>
-          <div class="modal" style="position: relative; display: block; transform: none;">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal Title</h5>
-              <button type="button" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p>This is a vertically centered modal. It appears in the center of the viewport.</p>
-              <p>Add your content here.</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn" style="background-color: #6c757d; color: white;">Close</button>
-              <button class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-export const CustomExample: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Launch Custom Modal</button>
-        
-        <div class="mt-4 p-4" style="background-color: #f8f9fa; border-radius: 0.5rem;">
-          <p><strong>Custom Modal Preview:</strong></p>
-          <div class="modal" style="position: relative; display: block; transform: none;">
-            <div class="modal-header">
-              <h5 class="modal-title">Confirm Action</h5>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure you want to perform this action?</p>
-              <p class="text-secondary" style="font-size: 0.875rem;">This action cannot be undone.</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn" style="background-color: #6c757d; color: white;">Cancel</button>
-              <button class="btn" style="background-color: #dc3545; color: white;">Confirm</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
+type Story = StoryObj<ModalDemoComponent>;
+export const VerticallyCentered: Story = {};

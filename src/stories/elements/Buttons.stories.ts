@@ -1,55 +1,61 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
-  title: 'Elements/Buttons',
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## Default Buttons
+@Component({
+  selector: 'vristo-buttons-demo',
+  standalone: true,
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Default Buttons</div>
+      <p style="color: var(--gray-500); font-size: 0.8125rem; margin-bottom: 1.5rem;">
+        ReportAll override: Drop shadows removed from all buttons.
+      </p>
 
-Standard button components for user actions.
-
-**Approved Variant:** Default Buttons
-
-**Reference:** [Vristo Buttons Documentation](https://angular.vristo.sbthemes.com/elements/buttons)
-        `,
-      },
-    },
-  },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <h5>Solid Buttons</h5>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
-          <button class="btn btn-primary">Primary</button>
-          <button class="btn" style="background-color: #28a745; color: white; border-color: #28a745;">Success</button>
-          <button class="btn" style="background-color: #dc3545; color: white; border-color: #dc3545;">Danger</button>
-          <button class="btn" style="background-color: #ffc107; color: #212529; border-color: #ffc107;">Warning</button>
-          <button class="btn" style="background-color: #17a2b8; color: white; border-color: #17a2b8;">Info</button>
-          <button class="btn" style="background-color: #6c757d; color: white; border-color: #6c757d;">Secondary</button>
-        </div>
-        
-        <h5>Button Sizes</h5>
-        <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;">
-          <button class="btn btn-primary btn-sm">Small</button>
-          <button class="btn btn-primary">Default</button>
-          <button class="btn btn-primary btn-lg">Large</button>
-        </div>
-        
-        <h5>Outline Buttons</h5>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="btn" style="background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color);">Primary</button>
-          <button class="btn" style="background: transparent; color: #28a745; border: 1px solid #28a745;">Success</button>
-          <button class="btn" style="background: transparent; color: #dc3545; border: 1px solid #dc3545;">Danger</button>
-        </div>
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">Solid</h4>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-info">Info</button>
+        <button class="btn btn-warning">Warning</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-dark">Dark</button>
       </div>
-    `,
-  }),
+
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">Outline</h4>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <button class="btn btn-outline-primary">Primary</button>
+        <button class="btn btn-outline-success">Success</button>
+        <button class="btn btn-outline-info">Info</button>
+        <button class="btn btn-outline-warning">Warning</button>
+        <button class="btn btn-outline-danger">Danger</button>
+        <button class="btn btn-outline-secondary">Secondary</button>
+        <button class="btn btn-outline-dark">Dark</button>
+      </div>
+
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">Sizes</h4>
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem;">States</h4>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <button class="btn btn-primary">Normal</button>
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+    </div>
+  `,
+})
+class ButtonsDemoComponent {}
+
+const meta: Meta<ButtonsDemoComponent> = {
+  title: 'Elements/Buttons',
+  component: ButtonsDemoComponent,
+  parameters: { docs: { description: { component: `**Vristo Variant:** Default\n**ReportAll Override:** Drop shadow removed\n**Reference:** [Vristo Buttons](https://angular.vristo.sbthemes.com/element/buttons)` } } },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<ButtonsDemoComponent>;
 export const DefaultButtons: Story = {};

@@ -1,78 +1,61 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-notifications-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Notifications</div>
+      <p style="color: var(--danger); font-size: 0.8125rem; font-weight: 600; margin-bottom: 1.5rem;">
+        ⚠️ Guidance needed: When to use Basic vs. Background Color. See @Doug McLaughlin.
+      </p>
+
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--gray-700);">Basic Notification</h4>
+      <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 1rem; display: flex; align-items: flex-start; gap: 0.75rem; max-width: 400px; margin-bottom: 1.5rem;">
+        <div style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--ra-green-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--primary); font-weight: 700;">✓</div>
+        <div>
+          <p style="font-weight: 600; font-size: 0.875rem; margin: 0;">Success</p>
+          <p style="font-size: 0.8125rem; color: var(--gray-500); margin: 0.25rem 0 0;">Your changes have been saved.</p>
+        </div>
+        <button style="margin-left: auto; background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 1rem;">×</button>
+      </div>
+
+      <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--gray-700);">Background Color Notification</h4>
+      <div *ngFor="let n of colorNotifs" [style.background]="n.bg" [style.color]="n.text" style="border-radius: var(--radius-md); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.75rem; max-width: 400px; margin-bottom: 0.5rem;">
+        <span style="font-weight: 700;">{{ n.icon }}</span>
+        <span style="font-size: 0.875rem;">{{ n.message }}</span>
+      </div>
+    </div>
+  `,
+})
+class NotificationsDemoComponent {
+  colorNotifs = [
+    { bg: 'var(--primary)', text: 'var(--white)', icon: '✓', message: 'Success notification' },
+    { bg: 'var(--info)', text: 'var(--white)', icon: 'ℹ', message: 'Information notification' },
+    { bg: 'var(--warning)', text: 'var(--dark)', icon: '⚠', message: 'Warning notification' },
+    { bg: 'var(--danger)', text: 'var(--white)', icon: '✕', message: 'Error notification' },
+  ];
+}
+
+const meta: Meta<NotificationsDemoComponent> = {
   title: 'Components/Notifications',
-  tags: ['autodocs'],
+  component: NotificationsDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Notifications
-
-Toast-style notifications for user feedback.
-
-**Approved Variants:** 
-- Basic
-- Background Color
-
-**Reference:** [Vristo Notifications Documentation](https://angular.vristo.sbthemes.com/components/notifications)
+**Vristo Variant:** Basic, Background Color  
+**ReportAll Note:** Need guidance on when to use each variant  
+**Reference:** [Vristo Notifications](https://angular.vristo.sbthemes.com/component/notifications)
         `,
       },
     },
   },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
-export const Basic: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Show Notification</button>
-        <div class="mt-4">
-          <div style="max-width: 400px; background: white; border: 1px solid #dee2e6; border-left: 4px solid var(--primary-color); border-radius: 0.375rem; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <div>
-                <strong style="color: var(--primary-color);">Success!</strong>
-                <p style="margin: 0.5rem 0 0 0; color: #6c757d;">Your changes have been saved successfully.</p>
-              </div>
-              <button style="background: none; border: none; font-size: 1.25rem; color: #6c757d; cursor: pointer; padding: 0; margin-left: 1rem;">&times;</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
-
-export const BackgroundColor: Story = {
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <button class="btn btn-primary">Show Colored Notification</button>
-        <div class="mt-4" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px;">
-          <div style="background: var(--primary-color); color: white; border-radius: 0.375rem; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <div>
-                <strong>Primary Notification</strong>
-                <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">This is a primary colored notification.</p>
-              </div>
-              <button style="background: none; border: none; font-size: 1.25rem; color: white; cursor: pointer; padding: 0; margin-left: 1rem;">&times;</button>
-            </div>
-          </div>
-          
-          <div style="background: #28a745; color: white; border-radius: 0.375rem; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <div>
-                <strong>Success Notification</strong>
-                <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Operation completed successfully!</p>
-              </div>
-              <button style="background: none; border: none; font-size: 1.25rem; color: white; cursor: pointer; padding: 0; margin-left: 1rem;">&times;</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  }),
-};
+type Story = StoryObj<NotificationsDemoComponent>;
+export const Notifications: Story = {};

@@ -1,51 +1,40 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
-  title: 'Elements/Alerts',
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## Default Alerts
-
-Contextual feedback messages for user actions.
-
-**Approved Variant:** Default Alerts
-
-**Reference:** [Vristo Alerts Documentation](https://angular.vristo.sbthemes.com/elements/alerts)
-        `,
-      },
-    },
-  },
-  render: () => ({
-    template: `
-      <div class="component-container">
-        <div class="alert alert-primary">
-          <strong>Primary Alert:</strong> This is a primary alert message.
+@Component({
+  selector: 'vristo-alerts-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Default Alerts</div>
+      <div *ngFor="let a of alerts" [class]="'alert alert-' + a.type">
+        <span style="font-weight: 700;">{{ a.icon }}</span>
+        <div>
+          <strong>{{ a.title }}</strong> — {{ a.message }}
         </div>
-        
-        <div class="alert alert-success">
-          <strong>Success:</strong> Your operation was successful!
-        </div>
-        
-        <div class="alert alert-danger">
-          <strong>Error:</strong> Something went wrong.
-        </div>
-        
-        <div class="alert alert-warning">
-          <strong>Warning:</strong> Please review your input.
-        </div>
-        
-        <div class="alert alert-info">
-          <strong>Info:</strong> Here's some helpful information.
-        </div>
+        <button class="alert-close">×</button>
       </div>
-    `,
-  }),
+    </div>
+  `,
+})
+class AlertsDemoComponent {
+  alerts = [
+    { type: 'primary', icon: '●', title: 'Primary', message: 'This is a primary alert with left border accent.' },
+    { type: 'success', icon: '✓', title: 'Success', message: 'Action completed successfully.' },
+    { type: 'info', icon: 'ℹ', title: 'Info', message: 'Here is some useful information.' },
+    { type: 'warning', icon: '⚠', title: 'Warning', message: 'Proceed with caution on this action.' },
+    { type: 'danger', icon: '✕', title: 'Danger', message: 'Something went wrong. Please try again.' },
+  ];
+}
+
+const meta: Meta<AlertsDemoComponent> = {
+  title: 'Elements/Alerts',
+  component: AlertsDemoComponent,
+  parameters: { docs: { description: { component: `**Vristo Variant:** Default Alerts\n**Reference:** [Vristo Alerts](https://angular.vristo.sbthemes.com/element/alerts)` } } },
+  tags: ['autodocs'],
 };
-
 export default meta;
-type Story = StoryObj;
-
+type Story = StoryObj<AlertsDemoComponent>;
 export const DefaultAlerts: Story = {};

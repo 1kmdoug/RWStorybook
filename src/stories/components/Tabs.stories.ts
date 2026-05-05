@@ -1,48 +1,63 @@
+import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { Component } from '@angular/core';
 
-const meta: Meta = {
+@Component({
+  selector: 'vristo-tabs-demo',
+  standalone: true,
+  template: `
+    <div class="panel">
+      <div class="panel-heading">Border Tabs</div>
+      <div class="tabs">
+        <button
+          *ngFor="let tab of tabs; let i = index"
+          class="tab-item"
+          [class.active]="activeTab === i"
+          (click)="activeTab = i"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
+      <div class="tab-content" style="padding: 1rem 0;">
+        <p style="color: var(--gray-600); font-size: 0.875rem; line-height: 1.6;">
+          {{ tabs[activeTab].content }}
+        </p>
+      </div>
+    </div>
+  `,
+  imports: [CommonModule],
+})
+class TabsDemoComponent {
+  activeTab = 0;
+  tabs = [
+    { label: 'Home', content: 'This is the Home tab content. In ReportAll, border tabs use the primary green for the active underline indicator.' },
+    { label: 'Profile', content: 'Profile tab content lives here. Each tab panel should contain contextually related information.' },
+    { label: 'Settings', content: 'Settings and configuration options. Keep tab labels concise — one or two words max.' },
+    { label: 'Disabled', content: '' },
+  ];
+}
+
+const meta: Meta<TabsDemoComponent> = {
   title: 'Components/Tabs',
-  tags: ['autodocs'],
+  component: TabsDemoComponent,
   parameters: {
     docs: {
       description: {
         component: `
-## Simple Tabs
+**Vristo Variant:** Border Tabs  
+**ReportAll Override:** Green (primary) outline on active tab  
+**Reference:** [Vristo Tabs](https://angular.vristo.sbthemes.com/component/tabs)
 
-Standard horizontal tab navigation component.
-
-**Use Case:** Navigation between related content sections within the same page.
-
-**Approved Variant:** Simple Tabs only (no pills, icons, or fancy styles)
-
-**Reference:** [Vristo Tabs Documentation](https://angular.vristo.sbthemes.com/components/tabs)
+Border Tabs are the standard tab component across ReportAll. The active state
+uses the ReportAll green primary color for the bottom border indicator.
         `,
       },
     },
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <div class="component-container">
-        <div class="nav-tabs">
-          <a class="nav-link active" href="javascript:void(0)">Home</a>
-          <a class="nav-link" href="javascript:void(0)">Profile</a>
-          <a class="nav-link" href="javascript:void(0)">Contact</a>
-          <a class="nav-link" href="javascript:void(0)" style="pointer-events: none; opacity: 0.5;">Disabled</a>
-        </div>
-        <div class="tab-content">
-          <h3>We move your world!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-      </div>
-    `,
-  }),
+  tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<TabsDemoComponent>;
 
-export const SimpleTabs: Story = {
-  args: {},
-};
+export const BorderTabs: Story = {};

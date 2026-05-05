@@ -2,62 +2,52 @@ import { Meta } from '@storybook/blocks';
 
 <Meta title="Introduction" />
 
-# ReportAll RW Component Library
+# ReportAll — Vristo Component Library
 
-Welcome to the **ReportAll Component Library** - a curated collection of Vristo UI components customized for ReportAll applications.
+Welcome to the **ReportAll/RW** component reference built on the [Vristo](https://angular.vristo.sbthemes.com) admin template.
 
-## 🎨 Theme
-
-This library uses a **Hunter Green** (`#285D4D`) primary color scheme, aligned with ReportAll's brand guidelines.
-
-## 📚 Component Organization
-
-Components are organized into the following categories:
-
-### Components
-- Tabs, Accordion, Modals, Cards, Carousel, Countdown, Counter
-- Sweet Alerts, Timeline, Notifications, Media Object
-- List Group, Pricing Table, Lightbox
-
-### Elements
-- Alerts, Avatar, Badges, Breadcrumbs, Buttons
-- Button Groups, Dropdown, Infobox, Jumbotron
-- Loader, Pagination, Popovers, Progress Bar
-- Search, Tooltips, Treeview, Typography
-
-### Data Display
-- Charts, Widgets, Font Icons, Tables, Datatables
-
-### Forms
-- Basic Forms, Form Layout, Validation
-- Input Mask, Select2, Checkbox and Radio
-- Switches, Wizards, File Upload
-- Quill Editor, Date Picker, Clipboard
-
-## 🎯 Purpose
-
-This component library standardizes UI components across ReportAll applications by:
-
-1. **Reducing Decision Fatigue** - Only approved component variants are included
-2. **Ensuring Consistency** - All components follow the same design language
-3. **Speeding Development** - Developers can quickly reference and implement components
-4. **Documenting Standards** - Notes and usage guidelines are included for each component
-
-## 🚀 Getting Started
-
-Browse the components in the sidebar. Each component includes:
-- Live interactive examples
-- Code snippets
-- Usage notes
-- Approved variants only
-
-## 📝 Notes
-
-- All components follow ReportAll brand guidelines
-- Primary color: Hunter Green (#285D4D)
-- This library contains only the **approved "simple" variants** from Vristo
-- For questions about component usage, refer to the Web UI Vristo Usage Confluence page
+This Storybook catalogs every Vristo component approved for use across ReportAll web products, along with the specific variants, overrides, and usage notes that keep our UI consistent.
 
 ---
 
-**Last Updated:** February 2026
+## How this is organized
+
+| Category       | What's inside |
+|----------------|---------------|
+| **Components** | Higher-level building blocks — tabs, modals, cards, accordions, etc. |
+| **Elements**   | Atomic UI pieces — buttons, badges, alerts, dropdowns, avatars, and more. |
+| **Forms**      | Input types, validation patterns, switches, date pickers, and editors. |
+| **Datatables** | Table styles and the Order Sorting datatable pattern. |
+
+---
+
+## ReportAll-Specific Overrides
+
+A few global differences from vanilla Vristo to be aware of:
+
+- **Drop shadows removed** on Buttons, Button Groups, and Dropdowns.
+- **Tables default to striped** (not plain).
+- **Tabs use a green (primary) outline** instead of the Vristo default.
+- **Accordions use no spacing** between items.
+- **Switches are rounded with a solid background color.**
+- **Avatars use the Initials variant** (not photos).
+
+---
+
+## Vristo Reference
+
+Each story links back to its Vristo reference page. The base URL pattern is:
+
+```
+https://angular.vristo.sbthemes.com/component/{slug}
+```
+
+---
+
+## Status & Contacts
+
+**Maintained by:** Doug (Product)  
+**Design source:** Matt Snavely's Vristo audit (Confluence)  
+**Last updated:** May 2026
+
+> **Note:** Components marked "Don't use" in the audit doc are excluded from this Storybook unless flagged otherwise. If you need something that's missing, check the Confluence page first.
