@@ -2,14 +2,16 @@
 
 Get your ReportAll Component Library running in 5 minutes!
 
-## Step 1: Download & Extract
+## Step 1: Clone the Repository
 
-You should have downloaded a ZIP file. Extract it to your desired location.
+```bash
+git clone https://github.com/1kmdoug/RWStorybook.git
+```
 
 ## Step 2: Open in Terminal
 
 ```bash
-cd reportall-component-library
+cd RWStorybook
 ```
 
 ## Step 3: Install Dependencies
@@ -48,25 +50,17 @@ Open the Simple Tabs component and compare it to your review app - you'll see it
 - ✅ Has interactive controls
 - ✅ Includes documentation
 
-### 3. Deploy to GitHub Pages (Optional)
+### 3. Deploy to GitHub Pages
 
-To share with your team:
+This repo deploys from GitHub Actions. Push to `main`, then confirm that GitHub Pages is using **GitHub Actions** as the source:
 
-```bash
-# First time setup
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/reportall-component-library.git
-git push -u origin main
-
-# Deploy to GitHub Pages
-npm run deploy-storybook
-```
+1. Open the repo on GitHub
+2. Go to **Settings** > **Pages**
+3. Set **Source** to **GitHub Actions**
+4. Push a commit or run **Deploy Storybook to GitHub Pages** from the Actions tab
 
 Your Storybook will be live at:
-`https://YOUR_USERNAME.github.io/reportall-component-library/`
+`https://1kmdoug.github.io/RWStorybook/`
 
 ---
 
