@@ -121,11 +121,25 @@
             "scripts": []
           }
         },
+        "build-for-storybook": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vristo-storybook",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [{"glob": "**/*", "input": "public"}],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        },
         "storybook": {
           "builder": "@storybook/angular:start-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "vristo-storybook:build",
+            "browserTarget": "vristo-storybook:build-for-storybook",
             "tsConfig": ".storybook/tsconfig.json",
             "port": 6006,
             "compodoc": false
@@ -135,7 +149,7 @@
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "configDir": ".storybook",
-            "browserTarget": "vristo-storybook:build",
+            "browserTarget": "vristo-storybook:build-for-storybook",
             "tsConfig": ".storybook/tsconfig.json",
             "outputDir": "storybook-static",
             "compodoc": false
