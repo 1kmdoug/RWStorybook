@@ -126,6 +126,7 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "vristo-storybook:build",
+            "tsConfig": ".storybook/tsconfig.json",
             "port": 6006,
             "compodoc": false
           }
@@ -135,6 +136,7 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "vristo-storybook:build",
+            "tsConfig": ".storybook/tsconfig.json",
             "outputDir": "storybook-static",
             "compodoc": false
           }
