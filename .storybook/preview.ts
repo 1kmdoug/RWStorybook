@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/angular';
-import './vristo-base.scss';
+import '!!style-loader!css-loader!sass-loader!./vristo-base.scss';
 
 const preview: Preview = {
   parameters: {
